@@ -47,7 +47,7 @@ namespace bookDemo.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("{id:int}")]
         public IActionResult UpdateOneBook([FromRoute(Name = "id")]int id, [FromBody]Book book)
         {
             //Check book?
@@ -87,8 +87,8 @@ namespace bookDemo.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{id : int}")]
-        public IActionResult PartiallyUpdateOneBook([FromRoute(Name = "id")]  int id, [FromBody]JsonPatchDocument<Book> bookPatch) 
+        [HttpPatch("{id:int}")]
+        public IActionResult PartiallyUpdateOneBook([FromRoute(Name = "id")] int id, [FromBody]JsonPatchDocument<Book> bookPatch) 
         {
             //check entity 
             var entity = ApplicationContext.Books.Find(b => b.Id.Equals(id));
